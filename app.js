@@ -22,6 +22,7 @@ var app = express();
 
 app.use(morgan(config.get('log_format'), {stream: log.winstonStream}))
 
+var routeGetInfo = require('./routes/get_info');
 var routeGetHealth = require('./routes/get_health');
 var routePostContract = require('./routes/post_contract');
 var routePostToken = require('./routes/post_token');
@@ -33,6 +34,8 @@ app.set('compiler', engine.compiler);
 app.set('fileManager', engine.fileManager);
 app.set('engine', engine.engine);
 
+// TODO: /info should be private, i.e. admin-only
+app.get('/info', routeGetInfo);
 app.get('/health', routeGetHealth);
 app.post('/contract', routePostContract);
 app.post('/token', routePostToken);
