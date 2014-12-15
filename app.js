@@ -16,6 +16,7 @@ var log = require('./lib/log');
 var db = require('./lib/db');
 var engine = require('./lib/engine');
 var tokenLib = require('./lib/token');
+var supervisor = require('./lib/supervisor');
 var manager = require('./lib/manager');
 
 var app = express();
@@ -43,6 +44,9 @@ app.post('/token', routePostToken);
 var unique = 0, internalServer;
 // Run migrations
 db.knex.migrate.latest().then(function () {
+  // Initialize VM provisioning supervisor
+  return supervisor.supervisor.launch();
+}).then(function () {
   // This is the internal HTTP server. External people will not connect to
   // this directly. Instead, they will connect to our TLS port and if they
   // weren't specifying a token, we'll assume they want to talk to the host

@@ -45,11 +45,15 @@
     "concat-stream": "^1.4.6",
     "express": "^4.5.1",
     "knex": "^0.6.22",
+    "lodash": "^2.4.1",
     "morgan": "^1.2.2",
     "nconf": "^0.6.9",
     "nodemon": "^1.2.1",
     "pg.js": "^3.4.1",
+    "pkgcloud": "^1.1.0",
+    "pkgcloud-bootstrapper": "^0.2.0",
     "random-js": "^1.0.4",
+    "ssh2": "^0.3.6",
     "tar-stream": "^0.4.4",
     "winston": "^0.7.3"
   }

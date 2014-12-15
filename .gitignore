@@ -12,10 +12,17 @@ node_modules
 # Development database
 dev.sqlite3
 
+# Local configuration
+config.json
+
 # SSL keys
 /server.key
 /server.crt
 .elasticbeanstalk/
+
+# SSH keys
+/id_rsa
+/id_rsa.pub
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
