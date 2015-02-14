@@ -1,0 +1,20 @@
+#cloud-config
+
+coreos:
+  units:
+    - name: docker-contract.service
+      command: start
+      content: |
+        [Unit]
+        Description=Docker contained contract
+        Author=Me
+        After=docker.service
+
+        [Service]
+        Restart=always
+        TimeoutStartSec=0
+        ExecStartPre=-/usr/bin/docker kill contract
+        ExecStartPre=-/usr/bin/docker rm contract
+        ExecStartPre=/usr/bin/docker pull <%= container_uri %>
+        ExecStart=/usr/bin/docker run -p 80:80 --name contract <%= container_uri %>
+        ExecStop=/usr/bin/docker stop contract
